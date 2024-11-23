@@ -67,7 +67,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     });
   }
 
-  Future<String> _generateSignatureNew(
+  Future<String> _generateSignature(
     String udid,
     String rnd,
     String login,
@@ -138,7 +138,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<void> _sendPublicKeyToServer(String udid, String rnd) async {
     final publicKey =
         await _secureStorage.read(key: KeyGeneratorService.publicKey);
-    final signature = await _generateSignatureNew(udid, rnd, '');
+    final signature = await _generateSignature(udid, rnd, '');
 
     log('Публичный ключ из кэша: $publicKey');
 
